@@ -7,10 +7,10 @@ let wordStatus = null;
 let i = 0;
 let x = 0;
 
-var button = document.getElementById('enterButton');
+var button = document.getElementById('enterButton'); // variabila button este creata pentru a nu putea apasa de 2 ori butonul "enter the word" inainte de a reseta jocul
 
 function createButtons() {
-  let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
+  let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>  // creem tastatura virtuala
   `
     <button
       class = "btn btn-black btn-lg"
@@ -19,16 +19,16 @@ function createButtons() {
     >
    ` + letter + `
    </button>
- `).join('');
+ `).join(''); // scapam de caracterul "," dintre litere
 
-  document.getElementById('keyboard').innerHTML = buttonsHTML;
+  document.getElementById('keyboard').innerHTML = buttonsHTML; 
 }
 
 function enterButton() {
 
   guessedWord();
   theAnswer = theWord.join('');
-  x = 1;
+  x = 1; //pentru ca de fiecare data cand apasam un buton se va executa functia handleGuess, ne asiguram ca programul va rula corect doar dupa apasarea butonului "enter the word"
   
   guessed = [];
   theWord = [];
@@ -36,26 +36,25 @@ function enterButton() {
   guessedWord();
   updateMistakes();
   createButtons();
-  button.disabled = true;
+  button.disabled = true; // dezactivam butonul "enter the word" dupa ce l-am apasat
 
 }
-
 
 function handleGuess(chosenLetter) {
   guessed.indexOf(chosenLetter) === -1 ? guessed.push(chosenLetter) : null;
   
   if (x === 1) {
-    document.getElementById(chosenLetter).setAttribute('disabled', true);
+    document.getElementById(chosenLetter).setAttribute('disabled', true); // dezactivam fiecare litera dupa apasarea sa dar doar dupa ce a fost introdus cuvantul pentru ghicit
   }
 
-  theWord[i] = document.getElementById(chosenLetter).id;
+  theWord[i] = document.getElementById(chosenLetter).id; // in sirul de numere se introduce cuvantul de ghicit
   ++i;
 
-  if(theAnswer.indexOf(chosenLetter) >= 0) {
+  if(theAnswer.indexOf(chosenLetter) >= 0) { // daca litera apasata se regaseste in cuvantul de ghicit, se va afisa si se va verifica daca ai castigat
     guessedWord();
     checkIfGameWon();
-  } else if (theAnswer.indexOf(chosenLetter) === -1 && x === 1) {
-      mistakes++;
+  } else if (theAnswer.indexOf(chosenLetter) === -1 && x === 1) { // daca s-a apasat butonul "enter the word" iar litera apasata nu corespunde cu nici o litera din cuvantul de ghicit, 
+      mistakes++;                                                 // se vor actualiza greselile, imaginile si se va verifica daca jocul a luat sfarsit
       updateMistakes();
       checkIfGameLost();
       updateHangmanPicture();
@@ -79,8 +78,8 @@ function checkIfGameLost() {
   }
 }
 
-function guessedWord() {
-  wordStatus = theAnswer.split('').map(letter => (guessed.indexOf(letter) >= 0 ? letter : "    ____    ")).join('');
+function guessedWord() { // daca avem o litera care corespunde cuvantului de ghicit se va inlocui cu caracterul "_"
+  wordStatus = theAnswer.split('').map(letter => (guessed.indexOf(letter) >= 0 ? letter : " _ ")).join('');
   document.getElementById("wordSpotlight").innerHTML = wordStatus;
 }
 
