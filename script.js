@@ -47,7 +47,7 @@ function handleGuess(chosenLetter) {
     document.getElementById(chosenLetter).setAttribute('disabled', true); // dezactivam fiecare litera dupa apasarea sa dar doar dupa ce a fost introdus cuvantul pentru ghicit
   }
 
-  theWord[i] = document.getElementById(chosenLetter).id; // in sirul de numere se introduce cuvantul de ghicit
+  theWord[i] = document.getElementById(chosenLetter).id; // implementam citirea cuvantului de ghicit din tastatura virtuala
   ++i;
 
   if(theAnswer.indexOf(chosenLetter) >= 0) { // daca litera apasata se regaseste in cuvantul de ghicit, se va afisa si se va verifica daca ai castigat
