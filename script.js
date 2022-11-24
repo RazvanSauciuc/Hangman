@@ -68,6 +68,8 @@ function updateHangmanPicture() {
 function checkIfGameWon() {
   if (wordStatus === theAnswer) {
     document.getElementById('keyboard').innerHTML = 'You Won !!!';
+    document.getElementById('hangMan').src = './imagesHangman/9.jpg';
+    document.getElementById('wordSpotlight').innerHTML = "";
   }
 }
 
@@ -78,7 +80,7 @@ function checkIfGameLost() {
   }
 }
 
-function guessedWord() { // daca avem o litera care corespunde cuvantului de ghicit se va inlocui cu caracterul "_"
+function guessedWord() { // se inlocuiesc toate literele cuvantului de ghicit cu caracterul "_" si se scapa de "," dintre ele
   wordStatus = theAnswer.split('').map(letter => (guessed.indexOf(letter) >= 0 ? letter : " _ ")).join('');
   document.getElementById("wordSpotlight").innerHTML = wordStatus;
 }
