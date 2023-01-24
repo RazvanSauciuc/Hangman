@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1>
+  <meta http-equiv="x-UA-Compatible" content="ie-edge">
+  <link rel="stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>Hangman</title>
+</head>
+<body>
+<div class="container">
+  <h1 class ="text-center">Hangman</h1>
+  <div class="text-center">
+    <img id="hangMan" src="./imagesHangman/0.jpg" alt="">
+    <div>Wrong Guesses: <span id='mistakes'>0</span> of <span id = 'maxWrong'>7</span></div>
+    <p id = "wordSpotlight"> The word to be guessed will be: </p><br>
+    <div id="keyboard" class = "button">
+    </div>
+    
+    <input id="enterButton" type="button" aria-pressed="false" class="btn btn-dark" onclick="enterButton()" value="Enter The Word"<br>
+    <input type="button" class="btn btn-dark" onClick="reset()" value="Reset"><br><br>
+
+  </div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
